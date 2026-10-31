@@ -113,6 +113,36 @@
   .avatars span:nth-child(3){background:#3d6ea8}
   .avatars span:nth-child(4){background:#7a5bb5}
 
+  /* 3D animated site name */
+  .title3d{perspective:900px;margin-bottom:16px;line-height:1.15}
+  .t3d{
+    position:relative;display:inline-block;font-weight:800;
+    font-size:clamp(1.5rem,4.1vw,2.6rem);letter-spacing:-.6px;
+    animation:tilt3d 7s ease-in-out infinite;will-change:transform;
+  }
+  .t3d .face,.t3d .depth{display:block;white-space:nowrap}
+  .t3d .depth{
+    position:absolute;inset:0;z-index:1;color:#0a4a40;transform:translate(5px,6px);
+    text-shadow:1px 1px 0 #0a4a40,2px 2px 0 #0a4a40,3px 3px 0 #0b544a,4px 4px 0 #0b544a,
+      5px 5px 0 #0d5f53,6px 6px 0 #0d5f53,8px 10px 20px rgba(13,31,28,.28);
+  }
+  .t3d .face{
+    position:relative;z-index:2;
+    background:linear-gradient(100deg,#082f29 0%,#0f6b5c 22%,#4fd0b4 42%,#0f6b5c 60%,#082f29 100%);
+    background-size:250% 100%;
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    animation:shine3d 7s linear infinite;
+  }
+  @keyframes shine3d{from{background-position:0% 50%}to{background-position:250% 50%}}
+  @keyframes tilt3d{
+    0%,100%{transform:rotateX(8deg) rotateY(-9deg) translateZ(0)}
+    50%{transform:rotateX(-4deg) rotateY(9deg) translateZ(16px)}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .t3d{animation:none;transform:rotateX(2deg)}
+    .t3d .face{animation:none}
+  }
+
   /* Hero visual */
   .hero-visual{position:relative}
   .panel{
@@ -395,6 +425,12 @@
     <div class="blob b"></div>
     <div class="wrap hero-grid">
       <div>
+        <div class="title3d" role="img" aria-label="موقع الطالب الخارجي">
+          <span class="t3d" aria-hidden="true">
+            <span class="depth">موقع الطالب الخارجي</span>
+            <span class="face">موقع الطالب الخارجي</span>
+          </span>
+        </div>
         <span class="eyebrow"><span class="dot"></span> الثالث المتوسط · السادس الإعدادي</span>
         <h1>تعلّم <em>أذكى</em>،<br>وتفوّق بثقة.</h1>
         <p class="lead">دروس مشروحة، واجبات، واختبارات تدريبية في مكان واحد — مع متابعة يومية من معلمين متخصصين تعرف مستواك وتقف معك عند كل صعوبة.</p>
