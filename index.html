@@ -903,7 +903,7 @@
       const file = btn.dataset.file;
       if (file) {
         const a = document.createElement('a');
-        a.href = file;
+        a.href = file + '?v=2';
         a.download = file.split('/').pop();
         document.body.appendChild(a);
         a.click();
