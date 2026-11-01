@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>أكاديمية النجاح — تعلّم أذكى</title>
+<meta name="description" content="منصة مدرسية للدراسة: دروس، واجبات، اختبارات، ومتابعة مع المعلمين.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+  :root{
+    --ink:#0d1f1c;
+    --ink-soft:#41574f;
+    --primary:#0f6b5c;
+    --primary-dark:#0a4a40;
+    --primary-light:#e6f2ef;
+    --accent:#f0a04b;
+    --accent-soft:#fdf0e0;
+    --bg:#f7f9f8;
+    --card:#ffffff;
+    --line:#e3ebe8;
+    --radius:20px;
+    --shadow:0 10px 30px -12px rgba(13,31,28,.18);
+    --shadow-lg:0 24px 60px -24px rgba(13,31,28,.28);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Tajawal',system-ui,-apple-system,'Segoe UI',sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.75;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  img,svg{display:block}
+  .wrap{width:min(1160px,92%);margin-inline:auto}
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:blur(14px);
+    background:rgba(247,249,248,.82);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s, box-shadow .3s;
+  }
+  header.scrolled{border-color:var(--line);box-shadow:0 6px 24px -18px rgba(13,31,28,.4)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:74px;gap:24px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:800;font-size:1.22rem;letter-spacing:-.2px}
+  .brand-mark{
+    width:42px;height:42px;border-radius:13px;flex:0 0 auto;
+    background:linear-gradient(145deg,var(--primary),#12836f);
+    display:grid;place-items:center;color:#fff;
+    box-shadow:0 8px 18px -8px rgba(15,107,92,.7);
+  }
+  .brand small{display:block;font-size:.66rem;font-weight:500;color:var(--ink-soft);letter-spacing:.4px;line-height:1}
+  .links{display:flex;align-items:center;gap:6px}
+  .links a{
+    padding:9px 15px;border-radius:11px;font-weight:500;font-size:.95rem;color:var(--ink-soft);
+    transition:background .2s,color .2s;
+  }
+  .links a:hover{background:var(--primary-light);color:var(--primary-dark)}
+  .nav-cta{display:flex;align-items:center;gap:10px}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    padding:12px 24px;border-radius:13px;font-weight:700;font-size:.95rem;
+    border:1px solid transparent;cursor:pointer;transition:transform .18s,box-shadow .25s,background .25s;
+    font-family:inherit;
+  }
+  .btn:active{transform:translateY(1px)}
+  .btn-primary{background:var(--primary);color:#fff;box-shadow:0 14px 26px -14px rgba(15,107,92,.85)}
+  .btn-primary:hover{background:var(--primary-dark);box-shadow:0 18px 34px -16px rgba(15,107,92,.9)}
+  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+  .btn-ghost:hover{background:#fff;border-color:#cfdcd8}
+  .btn-white{background:#fff;color:var(--primary-dark)}
+  .btn-white:hover{background:#f2f7f5}
+  .burger{display:none;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:#fff;cursor:pointer;place-items:center}
+  .burger span{display:block;width:18px;height:2px;background:var(--ink);border-radius:2px;position:relative;transition:.25s}
+  .burger span::before,.burger span::after{content:"";position:absolute;left:0;width:18px;height:2px;background:var(--ink);border-radius:2px;transition:.25s}
+  .burger span::before{top:-6px}.burger span::after{top:6px}
+  .menu-open .burger span{background:transparent}
+  .menu-open .burger span::before{top:0;transform:rotate(45deg)}
+  .menu-open .burger span::after{top:0;transform:rotate(-45deg)}
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;padding:70px 0 90px;overflow:hidden}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--accent-soft);color:#8a5313;font-weight:700;font-size:.82rem;
+    padding:7px 15px;border-radius:100px;margin-bottom:22px;
+  }
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--accent)}
+  h1{
+    font-size:clamp(2.1rem,4.4vw,3.55rem);line-height:1.25;font-weight:800;letter-spacing:-1px;
+    margin-bottom:20px;
+  }
+  h1 em{font-style:normal;color:var(--primary);position:relative;white-space:nowrap}
+  h1 em::after{
+    content:"";position:absolute;right:0;left:0;bottom:2px;height:12px;z-index:-1;
+    background:var(--accent);opacity:.35;border-radius:4px;
+  }
+  .lead{font-size:1.1rem;color:var(--ink-soft);max-width:52ch;margin-bottom:32px}
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:36px}
+  .trust{display:flex;align-items:center;gap:14px;color:var(--ink-soft);font-size:.9rem}
+  .avatars{display:flex}
+  .avatars span{
+    width:36px;height:36px;border-radius:50%;border:3px solid var(--bg);margin-left:-10px;
+    display:grid;place-items:center;font-weight:700;font-size:.8rem;color:#fff;
+  }
+  .avatars span:nth-child(1){background:#0f6b5c}
+  .avatars span:nth-child(2){background:#c96b3c}
+  .avatars span:nth-child(3){background:#3d6ea8}
+  .avatars span:nth-child(4){background:#7a5bb5}
+
+  /* Hero visual */
+  .hero-visual{position:relative}
+  .panel{
+    background:var(--card);border:1px solid var(--line);border-radius:26px;padding:22px;
+    box-shadow:var(--shadow-lg);position:relative;z-index:2;
+  }
+  .panel-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+  .panel-head strong{font-size:.95rem}
+  .badge{font-size:.72rem;font-weight:700;padding:4px 10px;border-radius:100px;background:var(--primary-light);color:var(--primary-dark)}
+  .progress-row{margin-bottom:15px}
+  .progress-row .top{display:flex;justify-content:space-between;font-size:.83rem;color:var(--ink-soft);margin-bottom:6px}
+  .bar{height:8px;border-radius:100px;background:#eef3f1;overflow:hidden}
+  .bar i{display:block;height:100%;border-radius:100px;background:linear-gradient(90deg,var(--primary),#22a58c);width:0;transition:width 1.2s cubic-bezier(.22,1,.36,1)}
+  .lesson-row{display:flex;align-items:center;gap:12px;padding:12px;border-radius:14px;background:#fafcfb;border:1px solid var(--line);margin-bottom:10px}
+  .lesson-icon{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;background:var(--primary-light);color:var(--primary-dark);flex:0 0 auto}
+  .lesson-row b{display:block;font-size:.88rem;line-height:1.4}
+  .lesson-row small{color:var(--ink-soft);font-size:.76rem}
+  .chip{margin-inline-start:auto;font-size:.7rem;font-weight:700;padding:3px 9px;border-radius:100px;background:var(--accent-soft);color:#8a5313}
+  .float-card{
+    position:absolute;background:#fff;border:1px solid var(--line);border-radius:16px;padding:13px 16px;
+    box-shadow:var(--shadow);display:flex;align-items:center;gap:10px;font-size:.82rem;font-weight:600;z-index:3;
+    animation:float 5s ease-in-out infinite;
+  }
+  .float-card.one{top:-6%;left:-6%}
+  .float-card.two{bottom:3%;right:-7%;animation-delay:1.4s}
+  .float-card .ico{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;background:var(--accent-soft);color:#8a5313}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+  .blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.45;z-index:0}
+  .blob.a{width:380px;height:380px;background:#cfe9e2;top:-120px;right:-100px}
+  .blob.b{width:300px;height:300px;background:#fbe3c6;bottom:-140px;left:-80px}
+
+  /* ---------- Stats ---------- */
+  .stats{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#fff}
+  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:34px 0}
+  .stat{text-align:center;border-inline-start:1px solid var(--line)}
+  .stat:first-child{border:0}
+  .stat b{display:block;font-size:2rem;font-weight:800;color:var(--primary);letter-spacing:-1px}
+  .stat span{font-size:.87rem;color:var(--ink-soft)}
+
+  /* ---------- Sections ---------- */
+  section{padding:86px 0}
+  .sec-head{max-width:640px;margin-bottom:44px}
+  .sec-head.center{margin-inline:auto;text-align:center}
+  .kicker{color:var(--primary);font-weight:700;font-size:.85rem;letter-spacing:.6px;margin-bottom:10px}
+  h2{font-size:clamp(1.6rem,3vw,2.3rem);font-weight:800;letter-spacing:-.6px;line-height:1.3;margin-bottom:14px}
+  .sec-head p{color:var(--ink-soft)}
+
+  /* Subjects */
+  .subjects{background:#fff}
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px;
+    transition:transform .25s,box-shadow .25s,border-color .25s;position:relative;overflow:hidden;
+  }
+  .card:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:#d3e2de}
+  .subject-icon{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;margin-bottom:18px;background:var(--primary-light);color:var(--primary-dark)}
+  .card h3{font-size:1.08rem;font-weight:700;margin-bottom:7px}
+  .card p{font-size:.9rem;color:var(--ink-soft);margin-bottom:16px}
+  .card .meta{display:flex;align-items:center;gap:14px;font-size:.8rem;color:var(--ink-soft);padding-top:14px;border-top:1px dashed var(--line)}
+  .card .meta b{color:var(--ink)}
+  .more{color:var(--primary);font-weight:700;font-size:.85rem;display:inline-flex;align-items:center;gap:5px}
+
+  /* ---------- Notes / ملازم ---------- */
+  .notes{background:#fff}
+  .notes-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:34px}
+  .tabs{display:inline-flex;gap:6px;background:#eef3f1;padding:5px;border-radius:14px}
+  .tab{
+    border:0;background:transparent;font-family:inherit;font-size:.92rem;font-weight:700;color:var(--ink-soft);
+    padding:10px 20px;border-radius:11px;cursor:pointer;transition:.2s;white-space:nowrap;
+  }
+  .tab.active{background:#fff;color:var(--primary-dark);box-shadow:0 4px 12px -6px rgba(13,31,28,.3)}
+  .grades-band{padding:44px 0 10px;background:linear-gradient(180deg,#f7f9f8 0%,#fff 100%)}
+  .grades-head{text-align:center;max-width:640px;margin:0 auto 26px}
+  .grades-head h2{font-size:1.55rem;letter-spacing:-.02em;margin:6px 0 0}
+  .grades-head .kicker{color:var(--primary);font-weight:700;font-size:.82rem;letter-spacing:.08em}
+  .grade-tiles{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px}
+  .grade-tile{
+    display:flex;align-items:center;gap:16px;text-align:right;width:100%;
+    padding:20px 22px;border-radius:18px;border:1px solid var(--line);background:#fafcfb;
+    cursor:pointer;font-family:inherit;color:var(--ink);
+    transition:transform .22s,box-shadow .22s,border-color .22s,background .22s;
+  }
+  .grade-tile:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:#cfded9}
+  .grade-tile.active{border-color:var(--primary);background:var(--primary-light);box-shadow:0 14px 30px -22px rgba(15,107,92,.9)}
+  .gt-ico{
+    width:52px;height:52px;border-radius:15px;display:grid;place-items:center;flex:0 0 auto;
+    background:#fff;color:var(--primary);border:1px solid var(--line);transition:.22s;
+  }
+  .grade-tile.active .gt-ico{background:var(--primary);color:#fff;border-color:var(--primary)}
+  .gt-body{display:flex;flex-direction:column;gap:2px;min-width:0}
+  .gt-body b{font-size:1.02rem;font-weight:700}
+  .gt-body small{font-size:.8rem;color:var(--ink-soft)}
+  .gt-arrow{margin-inline-start:auto;color:#a7bbb4;flex:0 0 auto;transition:.22s}
+  .grade-tile.active .gt-arrow{color:var(--primary);transform:translateX(-4px)}
+  .grades-band .grade-tile{padding:26px 26px;border-radius:22px;background:#fff;box-shadow:0 1px 0 rgba(13,31,28,.03)}
+  .grades-band .gt-ico{width:66px;height:66px;border-radius:19px;background:var(--primary-light);border-color:transparent}
+  .grades-band .gt-body b{font-size:1.12rem}
+  .grades-band .gt-body small{font-size:.86rem}
+  .panel-notes{display:none}
+  .panel-notes.active{display:block}
+  .notes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .note-card{
+    background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;
+    display:flex;flex-direction:column;gap:10px;transition:transform .2s,box-shadow .2s,border-color .2s;
+  }
+  .note-card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:#d3e2de}
+  .note-top{display:flex;align-items:center;justify-content:space-between}
+  .note-ico{
+    width:40px;height:40px;border-radius:11px;display:grid;place-items:center;
+    background:var(--primary-light);color:var(--primary-dark);
+  }
+  .note-tag{font-size:.68rem;font-weight:800;letter-spacing:.6px;color:#8a5313;background:var(--accent-soft);padding:3px 9px;border-radius:100px}
+  .note-tag.sci{color:var(--primary-dark);background:var(--primary-light)}
+  .note-tag.lit{color:#6b3fa0;background:#f1eafb}
+  .note-card h3{font-size:1rem;font-weight:700;margin-top:4px}
+  .note-sub{font-size:.8rem;color:var(--ink-soft)}
+  .note-meta{display:flex;gap:14px;font-size:.76rem;color:#8aa39b;margin-top:auto}
+  .btn-dl{
+    margin-top:12px;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    padding:10px;border-radius:11px;border:1px solid var(--line);background:#fafcfb;
+    font-family:inherit;font-size:.85rem;font-weight:700;color:var(--primary-dark);cursor:pointer;transition:.2s;
+  }
+  .btn-dl:hover{background:var(--primary);border-color:var(--primary);color:#fff}
+  .toast{
+    position:fixed;bottom:26px;left:50%;transform:translate(-50%,20px);z-index:100;
+    background:#0d1f1c;color:#fff;padding:14px 22px;border-radius:14px;font-size:.88rem;font-weight:500;
+    box-shadow:0 20px 40px -18px rgba(0,0,0,.6);opacity:0;pointer-events:none;transition:.3s;max-width:90vw;text-align:center;
+  }
+  .toast.show{opacity:1;transform:translate(-50%,0)}
+
+  /* Steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;position:relative}
+  .step{position:relative;padding-top:6px}
+  .step-num{
+    width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-weight:800;
+    background:var(--primary);color:#fff;margin-bottom:18px;box-shadow:0 12px 22px -14px rgba(15,107,92,.9);
+  }
+  .step h3{font-size:1.05rem;margin-bottom:8px}
+  .step p{font-size:.9rem;color:var(--ink-soft)}
+  .steps::before{
+    content:"";position:absolute;top:28px;right:60px;left:60px;height:1px;
+    background:repeating-linear-gradient(90deg,#cfdcd8 0 6px,transparent 6px 12px);
+  }
+
+  /* Teachers */
+  .teachers{background:#fff}
+  .teacher{padding:0;overflow:hidden;text-align:center}
+  .teacher .photo{height:170px;display:grid;place-items:center;font-size:2.4rem;font-weight:800;color:#fff}
+  .teacher:nth-child(1) .photo{background:linear-gradient(140deg,#0f6b5c,#1c8f79)}
+  .teacher:nth-child(2) .photo{background:linear-gradient(140deg,#c96b3c,#e39a64)}
+  .teacher:nth-child(3) .photo{background:linear-gradient(140deg,#3d6ea8,#6a9bd1)}
+  .teacher .body{padding:22px}
+  .teacher h3{font-size:1.02rem;margin-bottom:3px}
+  .teacher .role{font-size:.83rem;color:var(--primary);font-weight:600;margin-bottom:12px}
+  .teacher p{font-size:.86rem;color:var(--ink-soft)}
+  .rating{display:flex;justify-content:center;gap:4px;color:var(--accent);margin-top:14px;font-size:.9rem}
+
+  /* Testimonials */
+  .quote{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:30px;
+    display:flex;flex-direction:column;gap:18px;
+  }
+  .quote p{font-size:.95rem;color:var(--ink-soft);line-height:1.9}
+  .who{display:flex;align-items:center;gap:12px;margin-top:auto}
+  .who .av{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:700;font-size:.85rem;background:var(--primary)}
+  .who b{display:block;font-size:.9rem}
+  .who small{color:var(--ink-soft);font-size:.78rem}
+  .stars{color:var(--accent);letter-spacing:2px;font-size:.9rem}
+
+  /* CTA */
+  .cta-band{
+    background:linear-gradient(135deg,var(--primary-dark),var(--primary) 60%,#12836f);
+    border-radius:30px;padding:60px 50px;color:#fff;position:relative;overflow:hidden;
+    display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center;
+  }
+  .cta-band::after{
+    content:"";position:absolute;width:340px;height:340px;border-radius:50%;
+    background:rgba(255,255,255,.07);top:-140px;left:-90px;
+  }
+  .cta-band h2{color:#fff;margin-bottom:12px}
+  .cta-band p{color:rgba(255,255,255,.82);max-width:46ch}
+  .cta-side{display:flex;flex-direction:column;gap:12px;align-items:stretch;position:relative;z-index:2}
+  .cta-note{font-size:.8rem;color:rgba(255,255,255,.7);text-align:center}
+
+  /* Footer */
+  footer{background:#0d1f1c;color:#c8d6d1;padding:60px 0 28px;margin-top:90px}
+  .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:36px;margin-bottom:44px}
+  footer .brand{color:#fff;margin-bottom:14px}
+  footer p{font-size:.88rem;color:#93a8a1;line-height:1.9}
+  footer h4{color:#fff;font-size:.92rem;margin-bottom:14px}
+  footer ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+  footer li a{font-size:.87rem;color:#93a8a1;transition:color .2s}
+  footer li a:hover{color:#fff}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:22px;display:flex;justify-content:space-between;gap:14px;font-size:.8rem;color:#7c918a;flex-wrap:wrap}
+
+  /* Reveal */
+  .js .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,1,.36,1)}
+  .js .reveal.in{opacity:1;transform:none}
+
+  /* ---------- Responsive ---------- */
+  @media(max-width:980px){
+    .hero-grid{grid-template-columns:1fr;gap:48px}
+    .hero-visual{max-width:520px;margin-inline:auto;width:100%}
+    .grid-3,.steps{grid-template-columns:1fr 1fr}
+    .notes-grid{grid-template-columns:1fr 1fr}
+    .steps::before{display:none}
+    .foot-grid{grid-template-columns:1fr 1fr}
+    .cta-band{grid-template-columns:1fr;padding:44px 32px}
+    .links{display:none}
+    .nav-cta .btn-ghost{display:none}
+    .burger{display:grid}
+    .stats-grid{grid-template-columns:repeat(2,1fr);gap:26px 10px}
+    .stat:nth-child(3){border:0}
+  }
+  @media(max-width:620px){
+    .grid-3,.steps,.notes-grid{grid-template-columns:1fr}
+    .notes-head{flex-direction:column;align-items:stretch}
+    .grade-tiles{grid-template-columns:1fr;gap:12px}
+    .grade-tile{padding:16px 18px}
+    .grades-band .grade-tile{padding:18px 18px;border-radius:18px}
+    .gt-ico{width:46px;height:46px}
+    .grades-band .gt-ico{width:56px;height:56px;border-radius:16px}
+    .grades-band{padding:34px 0 6px}
+    .grades-head h2{font-size:1.3rem}
+    .tabs{width:100%}
+    .tab{flex:1;padding:10px 8px;font-size:.85rem}
+    .stats-grid{padding:26px 0}
+    .stat b{font-size:1.6rem}
+    section{padding:62px 0}
+    .float-card{display:none}
+    .hero{padding:44px 0 64px}
+    .nav{height:66px}
+    .links{
+      display:flex;flex-direction:column;align-items:stretch;gap:2px;
+      position:absolute;top:66px;right:0;left:0;background:#fff;border-bottom:1px solid var(--line);
+      padding:12px 5%;box-shadow:var(--shadow);opacity:0;pointer-events:none;transform:translateY(-8px);
+      transition:.22s;
+    }
+    .menu-open .links{opacity:1;pointer-events:auto;transform:none}
+    .links a{padding:13px 12px}
+    .cta-band{border-radius:22px;padding:34px 22px}
+    footer{margin-top:62px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    html{scroll-behavior:auto}
+    .js .reveal{opacity:1 !important;transform:none !important}
+  }
+</style>
+</head>
+<body>
+
+<header id="header">
+  <div class="wrap nav">
+    <a href="#top" class="brand">
+      <span class="brand-mark">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>
+      </span>
+      <span>أكاديمية النجاح<small>للدراسة والمتابعة</small></span>
+    </a>
+    <nav class="links" id="links">
+      <a href="#subjects">المواد</a>
+      <a href="#notes">الملازم</a>
+      <a href="#how">كيف نعمل</a>
+      <a href="#teachers">المعلمون</a>
+      <a href="#voices">آراء الطلاب</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#cta" class="btn btn-ghost">تسجيل الدخول</a>
+      <a href="#cta" class="btn btn-primary">ابدأ مجاناً</a>
+      <button class="burger" id="burger" aria-label="القائمة"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="blob a"></div>
+    <div class="blob b"></div>
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow"><span class="dot"></span> الثالث المتوسط · السادس الإعدادي</span>
+        <h1>تعلّم <em>أذكى</em>،<br>وتفوّق بثقة.</h1>
+        <p class="lead">دروس مشروحة، واجبات، واختبارات تدريبية في مكان واحد — مع متابعة يومية من معلمين متخصصين تعرف مستواك وتقف معك عند كل صعوبة.</p>
+        <div class="hero-actions">
+          <a href="#cta" class="btn btn-primary">ابدأ الدراسة مجاناً
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+          </a>
+          <a href="#subjects" class="btn btn-ghost">تصفّح المواد</a>
+        </div>
+        <div class="trust">
+          <div class="avatars"><span>م</span><span>س</span><span>ع</span><span>+</span></div>
+          <div><b>12,000+</b> طالب يدرسون معنا هذا العام</div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="float-card one">
+          <span class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></span>
+          تم تسليم الواجب
+        </div>
+        <div class="float-card two">
+          <span class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4"/><path d="m16.2 7.8 2.9-2.9"/><path d="M18 12h4"/><path d="m16.2 16.2 2.9 2.9"/><circle cx="12" cy="12" r="4"/></svg></span>
+          نتيجة الاختبار: 94%
+        </div>
+        <div class="panel">
+          <div class="panel-head">
+            <strong>لوحة تقدّمي</strong>
+            <span class="badge">هذا الأسبوع</span>
+          </div>
+          <div class="progress-row">
+            <div class="top"><span>الرياضيات</span><b>82%</b></div>
+            <div class="bar"><i data-w="82"></i></div>
+          </div>
+          <div class="progress-row">
+            <div class="top"><span>الفيزياء</span><b>67%</b></div>
+            <div class="bar"><i data-w="67"></i></div>
+          </div>
+          <div class="progress-row">
+            <div class="top"><span>اللغة الإنجليزية</span><b>91%</b></div>
+            <div class="bar"><i data-w="91"></i></div>
+          </div>
+          <div style="margin:16px 0 10px;font-size:.8rem;font-weight:700;color:var(--ink-soft)">الحصة القادمة</div>
+          <div class="lesson-row">
+            <span class="lesson-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg></span>
+            <div><b>المعادلات التربيعية</b><small>مع أ. سارة العتيبي</small></div>
+            <span class="chip">اليوم 18:00</span>
+          </div>
+          <div class="lesson-row" style="margin:0">
+            <span class="lesson-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+            <div><b>مراجعة سريعة</b><small>10 أسئلة · 8 دقائق</small></div>
+            <span class="chip">اختياري</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GRADE ICONS -->
+  <section class="grades-band" id="grades">
+    <div class="wrap">
+      <div class="grades-head">
+        <div class="kicker">اختر مرحلتك</div>
+        <h2>ملازمك جاهزة — أي صف تريد؟</h2>
+      </div>
+      <div class="grade-tiles">
+        <button class="grade-tile active" data-panel="third">
+          <span class="gt-ico">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/><path d="M9 7h7M9 11h5"/></svg>
+          </span>
+          <span class="gt-body">
+            <b>ملازم الثالث المتوسط</b>
+            <small>8 مواد · ملازم المنهج كامل</small>
+          </span>
+          <svg class="gt-arrow" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+        </button>
+
+        <button class="grade-tile" data-panel="sixth">
+          <span class="gt-ico">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>
+          </span>
+          <span class="gt-body">
+            <b>ملازم السادس الإعدادي</b>
+            <small>8 مواد · علمي وأدبي</small>
+          </span>
+          <svg class="gt-arrow" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="wrap stats-grid">
+      <div class="stat"><b data-count="12000">0</b><span>طالب مسجّل</span></div>
+      <div class="stat"><b data-count="45">0</b><span>معلماً متخصصاً</span></div>
+      <div class="stat"><b data-count="320">0</b><span>درساً تفاعلياً</span></div>
+      <div class="stat"><b data-count="96" data-suffix="%">0</b><span>نسبة نجاح الطلاب</span></div>
+    </div>
+  </div>
+
+  <!-- SUBJECTS -->
+  <section class="subjects" id="subjects">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="kicker">المواد الدراسية</div>
+        <h2>كل مادة، بمنهجها الرسمي</h2>
+        <p>دروس مطابقة لخطة الوزارة، مع بنك أسئلة يغطي الاختبارات الفصلية والنهائية.</p>
+      </div>
+      <div class="grid-3">
+        <article class="card reveal">
+          <span class="subject-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M8 8h8M8 12h8M8 16h4"/></svg></span>
+          <h3>الرياضيات</h3>
+          <p>الجبر، الهندسة، وحساب المثلثات بشرح متدرج وتمارين محلولة.</p>
+          <div class="meta"><span><b>64</b> درساً</span><span><b>12</b> اختباراً</span></div>
+        </article>
+        <article class="card reveal">
+          <span class="subject-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M19.1 4.9l-2.8 2.8M7.7 16.3l-2.8 2.8"/></svg></span>
+          <h3>الفيزياء</h3>
+          <p>القوانين والتجارب مع محاكاة بسيطة تساعدك على الفهم لا الحفظ.</p>
+          <div class="meta"><span><b>48</b> درساً</span><span><b>9</b> اختباراً</span></div>
+        </article>
+        <article class="card reveal">
+          <span class="subject-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6l1 6H8l1-6Z"/><path d="M6 9h12l-1 12H7L6 9Z"/></svg></span>
+          <h3>الكيمياء</h3>
+          <p>الجدول الدوري، التفاعلات، والمعادلات بخطوات واضحة ومبسطة.</p>
+          <div class="meta"><span><b>42</b> درساً</span><span><b>8</b> اختباراً</span></div>
+        </article>
+        <article class="card reveal">
+          <span class="subject-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.3-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.7-7 10-7 10Z"/></svg></span>
+          <h3>الأحياء</h3>
+          <p>الخلايا، الأجهزة الحيوية، والوراثة بصور توضيحية تفاعلية.</p>
+          <div class="meta"><span><b>39</b> درساً</span><span><b>7</b> اختباراً</span></div>
+        </article>
+        <article class="card reveal">
+          <span class="subject-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h13"/></svg></span>
+          <h3>اللغة العربية</h3>
+          <p>النحو، البلاغة، والتعبير الكتابي مع تصحيح فردي لكل واجب.</p>
+          <div class="meta"><span><b>58</b> درساً</span><span><b>11</b> اختباراً</span></div>
+        </article>
+        <article class="card reveal">
+          <span class="subject-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18Z"/></svg></span>
+          <h3>اللغة الإنجليزية</h3>
+          <p>قواعد، مفردات، واستماع — بأسلوب يبني الثقة قبل الدرجة.</p>
+          <div class="meta"><span><b>53</b> درساً</span><span><b>10</b> اختباراً</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOTES / الملازم -->
+  <section class="notes" id="notes">
+    <div class="wrap">
+      <div class="notes-head reveal">
+        <div class="sec-head" style="margin-bottom:0">
+          <div class="kicker">الملازم الدراسية</div>
+          <h2>ملازم جاهزة، لكل صف ومادة</h2>
+          <p>ملازم مرتّبة حسب المنهج، بصيغة PDF تقرأها على الجوال أو تطبعها.</p>
+        </div>
+      </div>
+
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-panel="third" role="tab">الثالث متوسط</button>
+        <button class="tab" data-panel="sixth" role="tab">السادس الإعدادي</button>
+      </div>
+
+      <!-- الثالث متوسط -->
+      <div class="panel-notes active" data-panel="third">
+        <div class="notes-grid">
+          <article class="note-card reveal">
+            <div class="note-top"><span class="note-ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg></span><span class="note-tag">PDF</span></div>
+            <h3>اللغة العربية</h3>
+            <p class="note-sub">الثالث متوسط · قواعد وإملاء</p>
+            <div class="note-meta"><span>26 صفحة</span><span>2.9 MB</span></div>
+            <button class="btn-dl" data-note="ملزمة اللغة العربية — الثالث متوسط">تحميل الملزمة</button>
+          </article>
+          <article class="note-card reveal">
+            <div class="note-top"><span class="note-ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg></span><span class="note-tag">PDF</span></div>
+            <h3>التربية الإسلامية</h3>
+            <p class="note-sub">الثالث متوسط · ملزمة مراجعة</p>
+            <div class="note-meta"><span>18 صفحة</span><span>2.2 MB</span></div>
+            <button class="btn-dl" data-note="ملزمة التربية الإسلامية — الثالث متوسط">تحميل الملزمة</button>
+          </article>
+          <article class="note-card reveal">
+            <div class="note-top"><span class="note-ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg></span><span class="note-tag">PDF</span></div>
+            <h3>اللغة الإنجليزية</h3>
+            <p class="note-sub">الثالث متوسط · Grammar &amp; Vocabulary</p>
+            <div class="note-meta"><span>22 صفحة</span><span>2.6 MB</span></div>
+            <button class="btn-dl" data-note="ملزمة اللغة الإنجليزية — الثالث متوسط">تحميل الملزمة</button>
+          </article>
+          <article class="note-card reveal">
+            <div class="note-top"><span class="note-ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg></span><span class="note-tag">PDF</span></div>
+            <h3>الرياضيات</h3>
+            <p class="note-sub">الثالث متوسط · الفصل الأول والثاني</p>
+            <div class="note-meta"><span>28 صفحة</span><span>3.4 MB</span></div>
+            <button class="btn-dl" data-note="ملزمة الرياضيات — الثالث متوسط">تحميل الملزمة</button>
+          </article>
+          <article class="note-card reveal">
+            <div class="note-top"><span class="note-ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg></span><span class="note-tag">PDF</span></div>
+            <h3>الكيمياء</h3>
+            <p class="note-sub">الثالث متوسط · ملزمة شاملة</p>
+            <div class="note-meta"><span>30 صفحة</span><span>3.8 MB</span></div>
+            <button class="btn-dl" data-note="ملزمة الكيمياء — الثالث متوسط">تحميل الملزمة</button>
+          </article>
+          <article class="note-card reveal">
+            <div class="note-top"><span class="note-ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg></span><span class="note-tag">PDF</span></div>
+            <h3>الفيزياء</h3>
+            <p class="note-sub">الثالث متوسط · ملزمة شاملة</p>
+            <div class="note-meta"><span>30 صفحة</span><span>3.7 MB</span></div>
+            <button class="btn-dl" data-note="ملزمة الفيزياء — الثالث متوسط">تحميل الملزمة</button>
+          </article>
+          <article class="note-card reveal">
+            <div class="note-top"><span class="note-ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg></span><span class="note-tag">PDF</span></div>
+            <h3>الأحياء</h3>
+            <p class="note-sub">الثالث متوسط · ملزمة شاملة</p>
+            <div class="note-meta"><span>28 صفحة</span><span>3.5 MB</span></div>
+            <button class="btn-dl" data-note="ملزمة الأحياء — الثالث متوسط">تحميل الملزمة</button>
+          </article>
+          <article class="note-card reveal">
+            <div class="note-top"><span class="note-ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg></span><span class="note-tag">PDF</span></div>
+            <h3>الاجتماعيات</h3>
+            <p class="note-sub">الثالث متوسط · تاريخ وجغرافيا</p>
+            <div class="note-meta"><span>24 صفحة</span><span>3.0 MB</span></div>
+            <button class="btn-dl" data-note="ملزمة الاجتماعيات — الثالث متوسط">تحميل الملزمة</button>
+          </article>
+        </div>
+      </div>
+
+      <!-- السادس الإعدادي -->
+      <div class="panel-notes" data-panel="sixth">
+        <div class="notes-grid">
+          <article class="note-card reveal">
+            <div class="note-top"><span class="note-ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg></span><span class="note-tag sci">علمي</span></div>
+            <h3>الرياضيات</h3>
+            <p class="note-sub">السادس الإعدادي · العلمي</p>
+            <div class="note-meta"><span>64 صفحة</span><span>7.8 MB</span></div>
+            <button class="btn-dl" data-note="ملزمة الرياضيات — السادس الإعدادي">تحميل الملزمة</button>
+          </article>
+          <article class="note-card reveal">
+            <div class="note-top"><span class="note-ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg></span><span class="note-tag sci">علمي</span></div>
+            <h3>الفيزياء</h3>
+            <p class="note-sub">السادس الإعدادي · العلمي</p>
+            <div class="note-meta"><span>58 صفحة</span><span>7.1 MB</span></div>
+            <button class="btn-dl" data-note="ملزمة الفيزياء — السادس الإعدادي">تحميل الملزمة</button>
+          </article>
+          <article class="note-card reveal">
+            <div class="note-top"><span class="note-ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg></span><span class="note-tag sci">علمي</span></div>
+            <h3>الكيمياء</h3>
+            <p class="note-sub">السادس الإعدادي · العلمي</p>
+            <div class="note-meta"><span>52 صفحة</span><span>6.4 MB</span></div>
+            <button class="btn-dl" data-note="ملزمة الكيمياء — السادس الإعدادي">تحميل الملزمة</button>
+          </article>
+          <article class="note-card reveal">
+            <div class="note-top"><span class="note-ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg></span><span class="note-tag sci">علمي</span></div>
+            <h3>الأحياء</h3>
+            <p class="note-sub">السادس الإعدادي · العلمي</p>
+            <div class="note-meta"><span>48 صفحة</span><span>5.9 MB</span></div>
+            <button class="btn-dl" data-note="ملزمة الأحياء — السادس الإعدادي">تحميل الملزمة</button>
+          </article>
+          <article class="note-card reveal">
+            <div class="note-top"><span class="note-ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg></span><span class="note-tag">مشترك</span></div>
+            <h3>اللغة العربية</h3>
+            <p class="note-sub">السادس الإعدادي · العلمي والأدبي</p>
+            <div class="note-meta"><span>56 صفحة</span><span>6.8 MB</span></div>
+            <button class="btn-dl" data-note="ملزمة اللغة العربية — السادس الإعدادي">تحميل الملزمة</button>
+          </article>
+          <article class="note-card reveal">
+            <div class="note-top"><span class="note-ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg></span><span class="note-tag">مشترك</span></div>
+            <h3>اللغة الإنجليزية</h3>
+            <p class="note-sub">السادس الإعدادي · العلمي والأدبي</p>
+            <div class="note-meta"><span>44 صفحة</span><span>5.2 MB</span></div>
+            <button class="btn-dl" data-note="ملزمة اللغة الإنجليزية — السادس الإعدادي">تحميل الملزمة</button>
+          </article>
+          <article class="note-card reveal">
+            <div class="note-top"><span class="note-ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg></span><span class="note-tag lit">أدبي</span></div>
+            <h3>التاريخ</h3>
+            <p class="note-sub">السادس الإعدادي · الأدبي</p>
+            <div class="note-meta"><span>46 صفحة</span><span>5.5 MB</span></div>
+            <button class="btn-dl" data-note="ملزمة التاريخ — السادس الإعدادي">تحميل الملزمة</button>
+          </article>
+          <article class="note-card reveal">
+            <div class="note-top"><span class="note-ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg></span><span class="note-tag lit">أدبي</span></div>
+            <h3>الجغرافيا</h3>
+            <p class="note-sub">السادس الإعدادي · الأدبي</p>
+            <div class="note-meta"><span>40 صفحة</span><span>4.9 MB</span></div>
+            <button class="btn-dl" data-note="ملزمة الجغرافيا — السادس الإعدادي">تحميل الملزمة</button>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="toast" id="toast"></div>
+
+  <!-- HOW -->
+  <section id="how">
+    <div class="wrap">
+      <div class="sec-head center reveal">
+        <div class="kicker">كيف نعمل</div>
+        <h2>ثلاث خطوات، وتبدأ من حيث أنت</h2>
+        <p>لا تحتاج تجهيزاً — فقط حسابك ومستواك الحالي.</p>
+      </div>
+      <div class="steps">
+        <div class="step reveal">
+          <div class="step-num">1</div>
+          <h3>سجّل واختر صفك</h3>
+          <p>دقيقة واحدة، وتحدد المادة والصف والمستوى — ثم يظهر لك مسارك الدراسي كاملاً.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-num">2</div>
+          <h3>ادرس بخطة واضحة</h3>
+          <p>دروس قصيرة، تمارين بعد كل درس، ومعلم يشرح النقطة التي تتعثر فيها تحديداً.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-num">3</div>
+          <h3>تابع تقدّمك أسبوعياً</h3>
+          <p>تقرير بسيط يوضح نقاط قوتك وما يحتاج مراجعة قبل الاختبار — لا مفاجآت.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEACHERS -->
+  <section class="teachers" id="teachers">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="kicker">فريق التدريس</div>
+        <h2>معلمون يعرفون اسمك</h2>
+        <p>متابعة فردية، وردّ على الأسئلة خلال ساعات العمل.</p>
+      </div>
+      <div class="grid-3">
+        <article class="card teacher reveal">
+          <div class="photo">س</div>
+          <div class="body">
+            <h3>أ. سارة العتيبي</h3>
+            <div class="role">الرياضيات · 12 سنة خبرة</div>
+            <p>متخصصة في تبسيط الجبر والهندسة لطلاب الثانوية.</p>
+            <div class="rating">★★★★★</div>
+          </div>
+        </article>
+        <article class="card teacher reveal">
+          <div class="photo">خ</div>
+          <div class="body">
+            <h3>أ. خالد الحربي</h3>
+            <div class="role">الفيزياء · 9 سنوات خبرة</div>
+            <p>يربط القوانين بالتجربة اليومية حتى تصبح مفهومة.</p>
+            <div class="rating">★★★★★</div>
+          </div>
+        </article>
+        <article class="card teacher reveal">
+          <div class="photo">ن</div>
+          <div class="body">
+            <h3>أ. نورة الزهراني</h3>
+            <div class="role">اللغة العربية · 10 سنوات خبرة</div>
+            <p>تصحيح فردي للتعبير الكتابي، وخطط لتحسين الدرجات.</p>
+            <div class="rating">★★★★★</div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="voices">
+    <div class="wrap">
+      <div class="sec-head center reveal">
+        <div class="kicker">آراء الطلاب</div>
+        <h2>نتائج تتكلّم</h2>
+      </div>
+      <div class="grid-3">
+        <div class="quote reveal">
+          <div class="stars">★★★★★</div>
+          <p>«كنت أخاف من الفيزياء، وبعد شهر واحد صرت أحل المسائل بنفسي. أهم شي أن الشرح يبدأ من الصفر.»</p>
+          <div class="who"><span class="av">ع</span><div><b>عبدالله م.</b><small>الصف الثاني ثانوي</small></div></div>
+        </div>
+        <div class="quote reveal">
+          <div class="stars">★★★★★</div>
+          <p>«الخطة الأسبوعية خلتني أعرف شنو أراجع بالضبط. ما عاد أضيّع وقت في مواد أنا أصلاً فاهمها.»</p>
+          <div class="who"><span class="av">ر</span><div><b>ريم س.</b><small>الصف الثالث متوسط</small></div></div>
+        </div>
+        <div class="quote reveal">
+          <div class="stars">★★★★★</div>
+          <p>«المعلم يرد على سؤالي بنفس اليوم، ويشرح لي بطريقة ثانية إذا ما فهمت الأولى. فرق كبير.»</p>
+          <div class="who"><span class="av">ي</span><div><b>يوسف أ.</b><small>الصف الأول ثانوي</small></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="cta" style="padding-top:20px">
+    <div class="wrap">
+      <div class="cta-band reveal">
+        <div>
+          <h2>ابدأ من درسك القادم</h2>
+          <p>أنشئ حسابك، اختر صفك، وشوف أول درس خلال دقيقتين. بدون بطاقة، وبدون التزام.</p>
+        </div>
+        <div class="cta-side">
+          <a href="#" class="btn btn-white">إنشاء حساب مجاني</a>
+          <a href="#" class="btn" style="background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.25)">تحدّث مع مستشار</a>
+          <div class="cta-note">مجاناً للطلاب · إلغاء في أي وقت</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="brand">
+          <span class="brand-mark">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>
+          </span>
+          <span>أكاديمية النجاح</span>
+        </div>
+        <p>منصة مدرسية عربية للدراسة والمتابعة، تساعد الطالب على الفهم قبل الحفظ.</p>
+      </div>
+      <div>
+        <h4>المنصة</h4>
+        <ul><li><a href="#subjects">المواد</a></li><li><a href="#notes">الملازم</a></li><li><a href="#how">كيف نعمل</a></li><li><a href="#teachers">المعلمون</a></li></ul>
+      </div>
+      <div>
+        <h4>الطلاب</h4>
+        <ul><li><a href="#cta">إنشاء حساب</a></li><li><a href="#">تسجيل الدخول</a></li><li><a href="#">الأسئلة الشائعة</a></li></ul>
+      </div>
+      <div>
+        <h4>تواصل</h4>
+        <ul><li><a href="#">support@example.com</a></li><li><a href="#">واتساب</a></li><li><a href="#">إنستغرام</a></li></ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 أكاديمية النجاح. جميع الحقوق محفوظة.</span>
+      <span>سياسة الخصوصية · الشروط والأحكام</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Sticky header shadow
+  const header = document.getElementById('header');
+  const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 8);
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  // Mobile menu
+  const burger = document.getElementById('burger');
+  burger.addEventListener('click', () => document.body.classList.toggle('menu-open'));
+  document.querySelectorAll('#links a').forEach(a =>
+    a.addEventListener('click', () => document.body.classList.remove('menu-open')));
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.14});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Progress bars
+  const bars = document.querySelectorAll('.bar i');
+  const barIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting){
+        e.target.style.width = e.target.dataset.w + '%';
+        barIO.unobserve(e.target);
+      }
+    });
+  }, {threshold:.4});
+  bars.forEach(b => barIO.observe(b));
+
+  // Counters
+  const counters = document.querySelectorAll('[data-count]');
+  const fmt = n => n.toLocaleString('en-US');
+  const countIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target, target = +el.dataset.count, suffix = el.dataset.suffix || '';
+      const dur = 1400, t0 = performance.now();
+      const tick = (t) => {
+        const p = Math.min((t - t0) / dur, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = fmt(Math.round(target * eased)) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+      countIO.unobserve(el);
+    });
+  }, {threshold:.6});
+  counters.forEach(c => countIO.observe(c));
+
+  // Notes tabs + placeholder toast
+  const toast = document.getElementById('toast');
+  let toastTimer;
+  const showToast = (msg) => {
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 3200);
+  };
+
+  function selectGrade(key, scroll) {
+    document.querySelectorAll('.tab, .grade-tile').forEach(t => {
+      t.classList.toggle('active', t.dataset.panel === key);
+    });
+    document.querySelectorAll('.panel-notes').forEach(p => p.classList.remove('active'));
+    const panel = document.querySelector(`.panel-notes[data-panel="${key}"]`);
+    if (!panel) return;
+    panel.classList.add('active');
+    panel.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+    if (scroll) document.getElementById('notes').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  document.querySelectorAll('.tab, .grade-tile').forEach(btn => {
+    btn.addEventListener('click', () => {
+      selectGrade(btn.dataset.panel, btn.classList.contains('grade-tile'));
+    });
+  });
+
+  document.querySelectorAll('.btn-dl').forEach(btn => {
+    btn.addEventListener('click', () => {
+      showToast(`${btn.dataset.note}: الملف قيد الرفع — سيُربط بهذا الزر فور إضافته.`);
+    });
+  });
+</script>
+</body>
+</html>
