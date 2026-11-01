@@ -1,0 +1,35 @@
+{
+  "id": "./",
+  "name": "موقع الطالب الخارجي — تعلّم أذكى",
+  "short_name": "الطالب الخارجي",
+  "description": "منصة مدرسية للدراسة: دروس، واجبات، اختبارات، ومتابعة مع المعلمين.",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f7f9f8",
+  "theme_color": "#0f6b5c",
+  "categories": ["education"],
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

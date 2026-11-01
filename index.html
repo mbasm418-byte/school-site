@@ -5,6 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>موقع الطالب الخارجي — تعلّم أذكى</title>
 <meta name="description" content="منصة مدرسية للدراسة: دروس، واجبات، اختبارات، ومتابعة مع المعلمين.">
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#0f6b5c">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="الطالب الخارجي">
+<link rel="apple-touch-icon" href="./apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
@@ -1051,6 +1059,51 @@
     });
 
     render();
+  })();
+</script>
+<style>
+  #pwaInstall{
+    position:fixed;bottom:18px;inset-inline-start:18px;z-index:9999;
+    display:inline-flex;align-items:center;gap:10px;
+    padding:12px 20px;border:0;border-radius:999px;
+    background:var(--primary);color:#fff;
+    font-family:inherit;font-weight:700;font-size:15px;
+    box-shadow:0 16px 40px -12px rgba(13,31,28,.45);
+    cursor:pointer;
+  }
+  #pwaInstall:active{transform:translateY(1px)}
+  #pwaInstall[hidden]{display:none}
+</style>
+<button id="pwaInstall" type="button" hidden>تثبيت التطبيق على جهازك</button>
+<script>
+  (function () {
+    var btn = document.getElementById('pwaInstall');
+    var deferred = null;
+
+    if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) {
+      btn.hidden = true;
+    } else if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('./sw.js').catch(function () {});
+      });
+    }
+
+    window.addEventListener('beforeinstallprompt', function (event) {
+      event.preventDefault();
+      deferred = event;
+      btn.hidden = false;
+    });
+
+    btn.addEventListener('click', function () {
+      if (!deferred) return;
+      deferred.prompt();
+      deferred.userChoice.then(function () {
+        deferred = null;
+        btn.hidden = true;
+      });
+    });
+
+    window.addEventListener('appinstalled', function () { btn.hidden = true; });
   })();
 </script>
 </body>
