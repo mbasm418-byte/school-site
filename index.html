@@ -246,6 +246,42 @@
   }
   .toast.show{opacity:1;transform:translate(-50%,0)}
 
+  /* ---------- Revision plan ---------- */
+  .plan{background:#fff}
+  .plan-card{
+    background:#fafcfb;border:1px solid var(--line);border-radius:22px;padding:26px;
+    display:grid;grid-template-columns:1fr 1fr auto;gap:16px;align-items:end;
+  }
+  .plan-field{display:flex;flex-direction:column;gap:8px;min-width:0}
+  .plan-field label{font-size:.82rem;font-weight:700;color:var(--ink-soft)}
+  .plan-field select,.plan-field input{
+    font-family:inherit;font-size:.95rem;padding:12px 14px;border-radius:12px;border:1px solid var(--line);
+    background:#fff;color:var(--ink);width:100%;cursor:pointer;
+  }
+  .plan-field select:focus,.plan-field input:focus{outline:2px solid var(--primary-light);border-color:var(--primary)}
+  #planStart{border:0;cursor:pointer;padding:13px 24px;font-family:inherit}
+  .plan-out{margin-top:20px;display:grid;gap:14px}
+  .plan-out[hidden]{display:none}
+  .plan-today{background:#fafcfb;border:1px solid var(--line);border-radius:18px;padding:22px}
+  .plan-today .k{font-size:.78rem;font-weight:800;color:var(--primary);letter-spacing:.04em}
+  .plan-today b{display:block;font-size:1.55rem;font-weight:800;margin:6px 0 2px;letter-spacing:-.4px}
+  .plan-today small{color:var(--ink-soft);font-size:.86rem}
+  .plan-bar{height:10px;border-radius:100px;background:#e9f1ee;overflow:hidden;margin-top:16px}
+  .plan-bar i{display:block;height:100%;width:0;border-radius:100px;background:linear-gradient(90deg,var(--primary),#22a58c);transition:width .5s ease}
+  .plan-actions{display:flex;gap:10px;flex-wrap:wrap}
+  .plan-actions button{
+    font-family:inherit;font-size:.86rem;font-weight:700;padding:11px 20px;border-radius:12px;cursor:pointer;
+    border:1px solid var(--line);background:#fff;color:var(--primary-dark);transition:.2s;
+  }
+  .plan-actions button:hover{border-color:var(--primary);background:var(--primary-light)}
+  .plan-actions .primary{background:var(--primary);border-color:var(--primary);color:#fff}
+  .plan-actions .primary:hover{background:var(--primary-dark)}
+  .plan-msg{font-size:.86rem;color:#8a5313;background:var(--accent-soft);padding:11px 15px;border-radius:12px;line-height:1.6}
+  @media (max-width:760px){
+    .plan-card{grid-template-columns:1fr;padding:20px}
+    #planStart{width:100%;justify-content:center}
+  }
+
   /* Steps */
   .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;position:relative}
   .step{position:relative;padding-top:6px}
@@ -379,6 +415,7 @@
     <nav class="links" id="links">
       <a href="#subjects">المواد</a>
       <a href="#notes">الملازم</a>
+      <a href="#plan">خطة المراجعة</a>
       <a href="#how">كيف نعمل</a>
     </nav>
     <div class="nav-cta">
@@ -678,29 +715,61 @@
   </section>
   <div class="toast" id="toast"></div>
 
+  <!-- REVISION PLAN -->
+  <section class="plan" id="plan">
+    <div class="wrap">
+      <div class="sec-head center reveal">
+        <div class="kicker">خطة المراجعة</div>
+        <h2>اقسّم ملزمتك على الأيام</h2>
+        <p>اختر المادة وتاريخ امتحانك، ونقسّم صفحات الملزمة الحقيقية على الأيام الباقية — صفحة البداية والنهاية لكل يوم، ونتحفظ بموقعك على جهازك فقط.</p>
+      </div>
+      <div class="plan-card reveal">
+        <div class="plan-field">
+          <label for="planSubject">المادة</label>
+          <select id="planSubject">
+            <option value="arabic_web.pdf|216">اللغة العربية — 216 صفحة</option>
+            <option value="islamiya_web.pdf|96">التربية الإسلامية — 96 صفحة</option>
+            <option value="english_web.pdf|122">اللغة الإنجليزية — 122 صفحة</option>
+            <option value="math_p1_web.pdf|159">الرياضيات (الجزء الأول) — 159 صفحة</option>
+            <option value="kimya_web.pdf|137">الكيمياء — 137 صفحة</option>
+            <option value="physics_web.pdf|121">الفيزياء — 121 صفحة</option>
+            <option value="biology_sajjad_web.pdf|200">الأحياء — 200 صفحة</option>
+            <option value="social_web.pdf|162">الاجتماعيات — 162 صفحة</option>
+          </select>
+        </div>
+        <div class="plan-field">
+          <label for="planDate">تاريخ الامتحان</label>
+          <input type="date" id="planDate">
+        </div>
+        <button class="btn btn-primary" id="planStart" type="button">اعمل الخطة</button>
+      </div>
+      <div class="plan-out" id="planOut" hidden></div>
+    </div>
+  </section>
+
   <!-- HOW -->
   <section id="how">
     <div class="wrap">
       <div class="sec-head center reveal">
-        <div class="kicker">كيف نعمل</div>
-        <h2>ثلاث خطوات، وتبدأ من حيث أنت</h2>
-        <p>لا تحتاج تجهيزاً — فقط حسابك ومستواك الحالي.</p>
+        <div class="kicker">كيف تستخدم الموقع</div>
+        <h2>ثلاث خطوات، وتبدأ الآن</h2>
+        <p>بدون تسجيل وبدون حساب — كل شيء يعمل من متصفحك.</p>
       </div>
       <div class="steps">
         <div class="step reveal">
           <div class="step-num">1</div>
-          <h3>سجّل واختر صفك</h3>
-          <p>دقيقة واحدة، وتحدد المادة والصف والمستوى — ثم يظهر لك مسارك الدراسي كاملاً.</p>
+          <h3>اختر مادتك</h3>
+          <p>ثماني مواد للثالث المتوسط، وكل واحدة لها ملزمتها الخاصة بصفحاتها الحقيقية.</p>
         </div>
         <div class="step reveal">
           <div class="step-num">2</div>
-          <h3>ادرس بخطة واضحة</h3>
-          <p>دروس قصيرة، تمارين بعد كل درس، ومعلم يشرح النقطة التي تتعثر فيها تحديداً.</p>
+          <h3>حمّل الملزمة</h3>
+          <p>ملزمة PDF واحدة لكل مادة، تفتح على الهاتف أو الحاسوب مباشرة وتشتغل بدون إنترنت.</p>
         </div>
         <div class="step reveal">
           <div class="step-num">3</div>
-          <h3>تابع تقدّمك أسبوعياً</h3>
-          <p>تقرير بسيط يوضح نقاط قوتك وما يحتاج مراجعة قبل الاختبار — لا مفاجآت.</p>
+          <h3>اتبع خطتك</h3>
+          <p>حدد تاريخ امتحانك، والموقع يقول لك كل يوم من أي صفحة إلى أي صفحة تقرأ.</p>
         </div>
       </div>
     </div>
@@ -736,21 +805,17 @@
         <p>منصة مدرسية عربية للدراسة والمتابعة، تساعد الطالب على الفهم قبل الحفظ.</p>
       </div>
       <div>
-        <h4>المنصة</h4>
-        <ul><li><a href="#subjects">المواد</a></li><li><a href="#notes">الملازم</a></li><li><a href="#how">كيف نعمل</a></li></ul>
+        <h4>روابط</h4>
+        <ul><li><a href="#subjects">المواد</a></li><li><a href="#notes">الملازم</a></li><li><a href="#plan">خطة المراجعة</a></li><li><a href="#how">كيف نعمل</a></li></ul>
       </div>
       <div>
-        <h4>الطلاب</h4>
-        <ul><li><a href="#notes">الملازم</a></li><li><a href="#subjects">المواد</a></li><li><a href="#how">كيف نعمل</a></li></ul>
-      </div>
-      <div>
-        <h4>تواصل</h4>
-        <ul><li><a href="#">support@example.com</a></li><li><a href="#">واتساب</a></li><li><a href="#">إنستغرام</a></li></ul>
+        <h4>الملازم</h4>
+        <ul><li><a href="#notes">الثالث المتوسط</a></li><li><a href="#notes">السادس الإعدادي</a></li></ul>
       </div>
     </div>
     <div class="foot-bottom">
       <span>© 2026 موقع الطالب الخارجي. جميع الحقوق محفوظة.</span>
-      <span>سياسة الخصوصية · الشروط والأحكام</span>
+      <span>ثماني ملازم مجانية للثالث المتوسط</span>
     </div>
   </div>
 </footer>
@@ -849,6 +914,130 @@
       }
     });
   });
+
+  // Revision plan
+  (function(){
+    const sel = document.getElementById('planSubject');
+    const dateEl = document.getElementById('planDate');
+    const startBtn = document.getElementById('planStart');
+    const out = document.getElementById('planOut');
+    if (!sel || !out || !startBtn) return;
+
+    const KEY = 'tsw-plan-v1';
+    const pad = n => String(n).padStart(2, '0');
+    const iso = d => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+    const today = iso(new Date());
+    const dayNum = s => {
+      const [y, m, d] = s.split('-').map(Number);
+      return Math.round(Date.UTC(y, m - 1, d) / 86400000);
+    };
+    const load = () => { try { return JSON.parse(localStorage.getItem(KEY)); } catch (e) { return null; } };
+    const save = s => { try { localStorage.setItem(KEY, JSON.stringify(s)); } catch (e) {} };
+    const arDate = s => {
+      const [y, m, d] = s.split('-').map(Number);
+      return `${d}/${m}/${y}`;
+    };
+    const subjects = [...sel.options].map(o => {
+      const [file, pages] = o.value.split('|');
+      return { file, pages: +pages, name: o.textContent.split(' — ')[0] };
+    });
+
+    let state = load();
+    dateEl.min = today;
+
+    function calc(st) {
+      const total = Math.max(1, dayNum(st.exam) - dayNum(st.start));
+      return {
+        total,
+        perDay: Math.ceil(st.pages / total),
+        elapsed: dayNum(today) - dayNum(st.start),
+        daysLeft: dayNum(st.exam) - dayNum(today)
+      };
+    }
+
+    function render() {
+      if (!state) { out.hidden = true; out.innerHTML = ''; return; }
+      const c = calc(state);
+      let k, head, sub, pct, extra = '';
+
+      if (c.daysLeft < 0) {
+        k = 'انتهت الخطة';
+        head = 'تاريخ الامتحان مضى';
+        sub = `كان امتحان ${state.name} بتاريخ ${arDate(state.exam)}. اختر تاريخاً جديداً من الأعلى وابدأ خطة جديدة.`;
+        pct = 100;
+      } else if (c.elapsed < 0) {
+        k = 'الخطة تبدأ قريباً';
+        head = `تبدأ في ${arDate(state.start)}`;
+        sub = `${state.pages} صفحة على ${c.total} يوم · ${c.perDay} صفحة يومياً · الامتحان ${arDate(state.exam)}.`;
+        pct = 0;
+      } else if (c.elapsed >= c.total) {
+        k = 'خلصت الملزمة';
+        head = 'وصلت لنهاية الخطة';
+        sub = `كل ${state.pages} صفحة كانت موزعة على ${c.total} يوم. باقي ${c.daysLeft} يوم على الامتحان — راجع الأخطاء والملخصات.`;
+        pct = 100;
+      } else {
+        const from = c.elapsed * c.perDay + 1;
+        const to = Math.min(state.pages, from + c.perDay - 1);
+        const left = state.pages - from + 1;
+        k = 'مهمة اليوم';
+        head = `من صفحة ${from} إلى ${to}`;
+        sub = `${state.name} · ${c.perDay} صفحة يومياً · باقي ${left} صفحة و${c.daysLeft} يوم على الامتحان.`;
+        pct = Math.round(Math.min(1, c.elapsed / c.total) * 100);
+        extra = `<div class="plan-bar"><i style="width:${pct}%"></i></div>`;
+      }
+
+      out.innerHTML = `
+        <div class="plan-today">
+          <div class="k">${k}</div>
+          <b>${head}</b>
+          <small>${sub}</small>
+          ${extra}
+        </div>
+        <div class="plan-actions">
+          <button class="primary" id="planRedo" type="button">أعيد التوزيع من اليوم</button>
+          <button id="planClear" type="button">امسح الخطة</button>
+        </div>`;
+      out.hidden = false;
+
+      document.getElementById('planRedo').addEventListener('click', () => {
+        state.start = today;
+        save(state);
+        render();
+        showToast('أعدنا توزيع الصفحات الباقية على الأيام المتبقية.');
+      });
+      document.getElementById('planClear').addEventListener('click', () => {
+        state = null;
+        try { localStorage.removeItem(KEY); } catch (e) {}
+        out.hidden = true;
+        out.innerHTML = '';
+        showToast('انمسحت الخطة من جهازك.');
+      });
+      document.getElementById('planSubject').value = `${state.file}|${state.pages}`;
+      dateEl.value = state.exam;
+    }
+
+    startBtn.addEventListener('click', () => {
+      const [file, pages] = sel.value.split('|');
+      const subj = subjects.find(s => s.file === file);
+      const exam = dateEl.value;
+      if (!exam) {
+        out.hidden = false;
+        out.innerHTML = '<div class="plan-msg">اختر تاريخ الامتحان أولاً.</div>';
+        return;
+      }
+      if (dayNum(exam) <= dayNum(today)) {
+        out.hidden = false;
+        out.innerHTML = '<div class="plan-msg">تاريخ الامتحان لازم يكون بعد اليوم — اختر تاريخاً في المستقبل.</div>';
+        return;
+      }
+      state = { file, pages: +pages, name: subj ? subj.name : file, exam, start: today };
+      save(state);
+      render();
+      out.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    render();
+  })();
 </script>
 </body>
 </html>
